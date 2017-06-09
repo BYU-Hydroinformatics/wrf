@@ -1,0 +1,25 @@
+.warning{
+    font-size: 80%;
+    color: red;
+}
+.btn-run{
+    position:relative;
+    top:-5px;
+}
+.btn-stop{
+    position:relative;
+    top:-5px;
+}
+.btn-increase{
+    position:relative;
+    top:-5px;
+}
+.btn-decrease{
+    position:relative;
+    top:-5px;
+}
+
+.cur-var{
+    position:relative;
+    top:-5px;
+}
