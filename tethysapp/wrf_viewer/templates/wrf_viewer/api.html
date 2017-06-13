@@ -1,0 +1,144 @@
+{% extends "wrf_viewer/base.html" %}
+{% load staticfiles %}
+
+{% block exit_button_override %}
+<div class="exit-button">
+<a href="javascript:void(0);" onclick="TETHYS_APP_BASE.exit_app('{% url 'app_library' %}');">Exit</a>
+</div>
+{% endblock %}
+
+{% block app_content %}
+<h1>Developers API</h1>
+<p>
+    A Developers API is provided for those who wish to incorporate the WRF Observations Explorer data into their own
+    separate application or script.
+</p>
+<br>
+<h2>API Methods</h2>
+<p>All API methods must be called using the following pattern:</p>
+<p><b>{{ host }}/apps/[parent-app]/api/[MethodName]/?param1=value1&#38;param2=value2&#38;...paramN=valueN</b></p>
+<p>See documentation and specific examples for all available methods below.</p>
+<br>
+<h3>GetVariableList</h3>
+<table>
+    <tr>
+        <td><b>Parent App</b></td>
+        <td colspan="5">wrf-viewer</td>
+    </tr>
+    <tr>
+        <td><b>Supported Methods</b></td>
+        <td colspan="5">GET</td>
+    </tr>
+    <tr>
+        <td><b>Returns</b></td>
+        <td colspan="5">A list of all available variables through the WRF Explorer.</td>
+    </tr>
+</table>
+<h5>Example:</h5>
+<a href="{{ host }}/apps/wrf-viewer/api/GetVariableList/" target="_blank">
+    <code>{{ host }}/apps/wrf-viewer/api/GetVariableList/</code>
+</a>
+<br><br>
+<h3>GetPointValues</h3>
+<table>
+    <tr>
+        <td><b>Parent App</b></td>
+        <td colspan="5">wrf-viewer</td>
+    </tr>
+    <tr>
+        <th>Supported Methods</th>
+        <td colspan="5">GET</td>
+    </tr>
+    <tr>
+        <th>Returns</th>
+        <td colspan="5">A JSON object with a timeseries for a given point and variable.</td>
+    </tr>
+    <tr>
+        <td rowspan="5"><b>Params</b></td>
+        <td><b>Name</b></td>
+        <td><b>Description</b></td>
+        <td><b>Valid Values</b></td>
+        <td><b>Required</b></td>
+    </tr>
+    <tr>
+        <td>latitude</td>
+        <td>Latitude in WGS 84 projection.</td>
+        <td>Any value within the WRF Explorer Domain.</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>longitude</td>
+        <td>Longitude in the WGS 84 projection.</td>
+        <td>Any value within the WRF Explorer Domain.</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>variable</td>
+        <td>WRF Variable for the forecast.</td>
+        <td>Has to be part of the GetVariableList dictionary</td>
+        <td>Yes</td>
+    </tr>
+</table>
+<h5>Example:</h5>
+<a href="{{ host }}/apps/wrf-viewer/api/GetPointValues/?latitude=20.7&longitude=80.2&variable=TACC_PRECIP" target="_blank">
+    <code>{{ host }}/apps/wrf-viewer/api/GetPointValues/?latitude=20.7&longitude=80.2&variable=TACC_PRECIP</code>
+</a>
+<br><br>
+<h3>GetPolygonValues</h3>
+<table>
+    <tr>
+        <td><b>Parent App</b></td>
+        <td colspan="5">wrf-viewer</td>
+    </tr>
+    <tr>
+        <th>Supported Methods</th>
+        <td colspan="5">GET</td>
+    </tr>
+    <tr>
+        <th>Returns</th>
+        <td colspan="5">A JSON object with a timeseries for a given polygon and variable.</td>
+    </tr>
+    <tr>
+        <td rowspan="6"><b>Params</b></td>
+        <td><b>Name</b></td>
+        <td><b>Description</b></td>
+        <td><b>Valid Values</b></td>
+        <td><b>Required</b></td>
+    </tr>
+    <tr>
+        <td>minx</td>
+        <td>Minimum X value for a polygon bounding box in WGS 84 projection.</td>
+        <td>Any value within the WRF Explorer Domain.</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>miny</td>
+        <td>Minimum Y value for a polygon bounding box in WGS 84 projection.</td>
+        <td>Any value within the WRF Explorer Domain.</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>maxx</td>
+        <td>Maximum Y value for a polygon bounding box in WGS 84 projection.</td>
+        <td>Any value within the WRF Explorer Domain.</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>maxy</td>
+        <td>Maximum Y value for a polygon bounding box in WGS 84 projection.</td>
+        <td>Any value within the WRF Explorer Domain.</td>
+        <td>Yes</td>
+    </tr>
+    <tr>
+        <td>variable</td>
+        <td>WRF Variable for the forecast.</td>
+        <td>Has to be part of the GetVariableList dictionary</td>
+        <td>Yes</td>
+    </tr>
+</table>
+<h5>Example:</h5>
+<a href="{{ host }}/apps/wrf-viewer/api/GetPolygonValues/?miny=20&maxy=24&minx=80&maxx=84&variable=REFC_MAX" target="_blank">
+    <code>{{ host }}/apps/wrf-viewer/api/GetPolygonValues/?miny=20&maxy=24&minx=80&maxx=84&variable=REFC_MAX</code>
+</a>
+{% endblock %}
+

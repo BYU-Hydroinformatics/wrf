@@ -11,6 +11,7 @@ import json, \
 from wrf import *
 
 WRF_DIRECTORY = "/wrf/"
+
 @login_required()
 def home(request):
     """
@@ -57,6 +58,15 @@ def home(request):
     context = {"select_variable": select_variable, "select_date": select_date,"display_vars":display_vars,"slider_max":slider_max,"var_metadata":var_metadata,"cbar":cbar,"first_day":first_day}
 
     return render(request, 'wrf_viewer/home.html', context)
+
+
+@login_required()
+def api(request):
+
+    context = {'host': 'http://%s' % request.get_host()}
+
+    return render(request, 'wrf_viewer/api.html', context)
+
 
 def get_plot(request):
     return_obj = {}

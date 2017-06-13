@@ -607,9 +607,15 @@ var WRF_PACKAGE = (function() {
             }
         });
         cbar.forEach(function(color,i){
-            var color_map_entry = '<ColorMapEntry color="'+color+'" quantity="'+cur_variable["interval"][i]+'" label="label'+i+'" opacity="0.7"/>';
-            sld_color_string += color_map_entry;
+            if (i != 19 ){
+                var color_map_entry = '<ColorMapEntry color="'+color+'" quantity="'+cur_variable["interval"][i]+'" label="label'+i+'" opacity="0.7"/>';
+                sld_color_string += color_map_entry;
+            }else{
+                 var color_map_entry = '<ColorMapEntry color="#000000" quantity="'+cur_variable["interval"][i]+'" label="label'+i+'" opacity="0.0"/>';
+                 sld_color_string+color_map_entry;
+            }
         });
+
         return sld_color_string
 
 
@@ -629,7 +635,7 @@ var WRF_PACKAGE = (function() {
         <ColorMap>\
         <ColorMapEntry color="#000000" quantity="-9999" label="nodata" opacity="0.0" />'+
             color_str
-            +'<ColorMapEntry color="#000000" quantity="9999E36" label="nodata" opacity="0.0" /></ColorMap>\
+            +'<ColorMapEntry color="#000000" quantity="9999" label="nodata" opacity="0.0" /></ColorMap>\
         </RasterSymbolizer>\
         </Rule>\
         </FeatureTypeStyle>\
@@ -661,7 +667,7 @@ var WRF_PACKAGE = (function() {
         <ColorMap> \
         <ColorMapEntry color="#000000" quantity="-9999" label="nodata" opacity="0.0" />'+
             color_str
-            +' <ColorMapEntry color="#000000" quantity="9999E36" label="nodata" opacity="0.0" /></ColorMap>\
+            +' <ColorMapEntry color="#000000" quantity="9999" label="nodata" opacity="0.0" /></ColorMap>\
         </RasterSymbolizer>\
         </Rule>\
         </FeatureTypeStyle>\

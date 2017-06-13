@@ -12,7 +12,17 @@
 {# The name you provided in your app.py is accessible through the tethys_app.name context variable #}
 {% block app_title %}{{ tethys_app.name }}{% endblock %}
 
+{% block exit_button_override %}
+
+<div class="exit-button" style="display: flex; display: -webkit-flex;">
+  <a href="{% url 'wrf_viewer:api' %}" target="_blank" style="margin-right: 5px;">API</a>
+  <a href="javascript:void(0);" onclick="TETHYS_APP_BASE.exit_app('{% url 'app_library' %}');">Exit</a>
+</div>
+
+{% endblock %}
+
 {% block app_navigation_items %}
+<li><h4><a href="{% url 'wrf_viewer:home' %}">Return to App</a></h4></li>
 {% endblock %}
 
 {% block app_content %}
