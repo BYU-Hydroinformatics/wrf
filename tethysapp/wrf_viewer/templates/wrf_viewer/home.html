@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://openlayers.org/en/v4.1.1/css/ol.css" type="text/css">
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 {% endblock %}
+
 {% block global_scripts %}
 {{ block.super }}
 <script src="http://code.highcharts.com/highcharts.js"></script>
@@ -18,7 +19,154 @@
 
 {% block app_content_wrapper_override %}
 
-{{ block.super }}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#modalWelcome").modal("show");
+    });
+</script>
+<style>
+    #modalWelcome .modal-body {
+    right: 1px;
+}
+.welcome-step {
+    font-size: 18px;
+}
+.welcome-substep1 {
+    font-size: 16px;
+}
+.welcome-substep2 {
+    font-size: 14px;
+}
+#modalWelcome .modal-dialog {
+    /*width: auto;*/
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.modal-content {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.modal-header {
+    min-height: 70px;
+}
+.modal-body {
+    position: fixed;
+    top: 70px;
+    bottom: 65px;
+    right: 1px;
+    left: 0;
+    overflow-y: auto;
+}
+.modal-footer {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-align-content: space-between;
+    -ms-flex-line-pack: justify;
+    align-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 65px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.footer-info {
+    text-align: left;
+    margin-left: 5px;
+}
+.modal-body td, .modal-body th {
+    padding: 10px;
+}
+.modal-info {
+    margin-right: 38%;
+}
+    @media (max-width: 550px) {
+    #byu-logo-container {
+        display: none;
+    }
+}
+</style>
+ <!-- Welcome Modal -->
+    <div id="modalWelcome" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Guide</h4>
+                </div>
+                <div class="modal-body">
+                    <p><b>For any questions, comments or requests contact Dr. Jim Nelson at <a href="mailto:jimn@byu.edu">jimn@byu.edu</a></b></p>
+                    <h5>The following steps highlight the several functions of the HIWAT Forecast Viewer web app</h5>
+                    <ol>
+                        <li class="welcome-step">View different timesteps
+                            <ul>
+                                <li class="welcome-substep1">Move the slider above the map
+                            </ul>
+                        </li>
+
+                        <li class="welcome-step">View grid value
+                            <p><b>Please make sure that map interaction is set to none</b></p>
+                            <ul>
+                                <li class="welcome-substep1">Simply click within the raster region. It should show a popup with the value.
+                            </ul>
+                            <p>Note: If you don't see a value it means that you are cliking outside the actual data bounds.</p>
+                        </li>
+                        <li class="welcome-step">View Animation
+                            <ul>
+                                <li class="welcome-substep1">Use the animation controls to the left of the slider to start or stop animation
+                                <li class="welcome-substep1">Use the Forward and Reverse buttons to increase and decrease animation speed
+                            </ul>
+                        </li>
+                        <li class="welcome-step">View different variables
+                            <ul>
+                                <li class="welcome-substep1">Select the map display variable from the dropdown to the left of the animation controls
+                            </ul>
+                        </li>
+                        <li class="welcome-step">View Time Series
+                            <p><b>Select the point,polygon or shapefile option from the map interaction dropdown:</b></p>
+                            <ul>
+                                <li class="welcome-substep1">Click within the region
+                                <li class="welcome-substep1">Select a variable of interest and then click on Show Plot
+                                <li class="welcome-substep1">The Time Series for that point,polygon or shapefile will be shown below the map
+                            </ul>
+                            <p>Note: Be sure that the shapefile is within the region</p>
+                        </li>
+                        <li class="welcome-step">Click 'Exit' in the top-right of the app to return to the Main Apps Library</li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <div id="byu-logo-container">
+                        <span><i>Developed at the BYU Hydroinformatics Lab</i></span>
+                    </div>&nbsp;
+                    <a href="https://github.com/BYU-Hydroinformatics/wrf" target="_blank" class="btn btn-default">View Code</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!--End modal content-->
+        </div>
+    </div>
+    <!--End modal-->
+
 
 <form id="modalUpload" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -44,10 +192,11 @@
     <!--End modal content-->
   </div>
 </form>
-
+{{ block.super }}
 {% endblock %}
 
 {% block app_navigation_items %}
+<button id="beta-feedback-button">Documentation</button>
 <style>
   #map{
     width:100%;

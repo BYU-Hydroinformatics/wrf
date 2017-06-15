@@ -32,3 +32,33 @@ th, td {
     padding: 5px;
     text-align: left;
 }
+
+#beta-feedback-button {
+  color: #fff;
+  font-weight: bold;
+  position: absolute;
+  left: -45px;
+  bottom: 50px;
+  background-color: #660099;
+  vertical-align:top;
+  margin-top:23px;
+  padding: 5px 10px;
+  transform:rotate(7deg);
+  -ms-transform:rotate(90deg); /* IE 9 */
+  -moz-transform:rotate(90deg); /* Firefox */
+  -webkit-transform:rotate(90deg); /* Safari and Chrome */
+  -o-transform:rotate(90deg); /* Opera */
+}
+
+#beta-feedback-button:hover {
+  background-color: #084B8A;
+}
+
+#beta-feedback-button:focus {
+  background-color: #084B8A;
+}
+
+
+
+
+
