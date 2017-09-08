@@ -17,6 +17,13 @@
 <script src="https://openlayers.org/en/v4.1.1/build/ol.js"></script>
 {% endblock %}
 
+{% block header_buttons %}
+{{block.super}}
+<div class="header-button glyphicon-button" data-toggle="tooltip" data-placement="bottom" title="View API">
+  <a href="{% url 'wrf_viewer:api' %}"><span class="glyphicon glyphicon-font"></span></a>
+</div>
+{% endblock %}
+
 {% block app_content_wrapper_override %}
 
 
