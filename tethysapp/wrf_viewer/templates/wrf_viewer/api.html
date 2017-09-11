@@ -1,12 +1,6 @@
 {% extends "wrf_viewer/base.html" %}
 {% load staticfiles %}
 
-{% block exit_button_override %}
-<div class="exit-button">
-<a href="javascript:void(0);" onclick="TETHYS_APP_BASE.exit_app('{% url 'app_library' %}');">Exit</a>
-</div>
-{% endblock %}
-
 {% block app_content %}
 <h1>Developers API</h1>
 <p>
